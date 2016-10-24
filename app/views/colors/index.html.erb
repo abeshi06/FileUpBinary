@@ -16,7 +16,9 @@
     <% @colors.each do |color| %>
       <tr>
         <td><%= color.colorname %></td>
-        <td><%= color.image %></td>
+        <td>
+          <%= image_tag show_image_color_path(color) %>
+        </td>
         <td><%= color.username %></td>
         <td><%= link_to 'Show', color %></td>
         <td><%= link_to 'Edit', edit_color_path(color) %></td>

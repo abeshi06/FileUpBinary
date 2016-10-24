@@ -10,14 +10,9 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :colorname %><br>
-    <%= f.text_field :colorname %>
-  </div>
   <div class="field">
     <%= f.label :image %><br>
-    <%= f.text_field :image %>
+    <%= f.file_field :image, accept: "image/jpeg" %>
   </div>
   <div class="field">
     <%= f.label :username %><br>

@@ -12,6 +12,11 @@ class ColorsController < ApplicationController
   def show
   end
 
+  def show_image
+    @image = Color.find(params[:id])
+    send_data @image.image, :type => 'image/jpeg', :disposition => 'inline'
+  end
+
   # GET /colors/new
   def new
     @color = Color.new
@@ -69,6 +74,11 @@ class ColorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def color_params
-      params.require(:color).permit(:colorname, :image, :username)
+      return_params = params.require(:color).permit(:colorname, :image, :username)
+      if return_params[:image] != nil
+        return_params[:colorname] = return_params[:image].original_filename
+        return_params[:image] = return_params[:image].read
+      end
+      return return_params
     end
 end
